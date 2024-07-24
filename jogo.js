@@ -35,3 +35,21 @@ function create() {
     console.log("Dados inválidos");
   }
 }
+
+const read = () => {
+  if (jogos.length == 0) {
+    console.log("Nenhum jogo cadastrado");
+  } else {
+    jogos.forEach((jogo, index) => {
+      console.log(`
+        ${index + 1}.
+         Nome: ${jogo.nome}
+         Estudio: ${jogo.estudio}
+         Ano de Lançamento: ${jogo.anoLancamento}
+         Preço: ${jogo.preco}
+         Duração: ${jogo.duracao}
+         Sequência: ${jogo.sequencia}
+        `);
+    });
+  }
+};
