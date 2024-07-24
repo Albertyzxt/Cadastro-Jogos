@@ -1,6 +1,6 @@
 const prompt = require("prompt-sync")();
 
-const { modelo, create, read, update, del } = require("./jogo.js");
+const { create, read, update, del } = require("./jogo.js");
 
 const menuJogo = () => {
   while (true) {

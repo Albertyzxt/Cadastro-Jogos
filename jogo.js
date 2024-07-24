@@ -102,7 +102,6 @@ const del = () => {
   }
 };
 const functions = {
-  modelo,
   create,
   read,
   update,
