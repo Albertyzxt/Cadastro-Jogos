@@ -2,7 +2,7 @@ const prompt = require("prompt-sync")();
 
 const jogos = [];
 
-const validarIndice = indice => indice >= 0 && indice < jogos.length
+const validarIndice = (indice) => indice >= 0 && indice < jogos.length;
 
 const modelo = () => {
   const nome = prompt("Digite o nome do jogo: ");
@@ -10,9 +10,11 @@ const modelo = () => {
   const anoLancamento = prompt("Digite o ano de lançamento: ");
   const preco = prompt("Digite o preço do jogo: ");
   const duracao = prompt("Digite a duração do jogo: ");
-  let sequencia = -1
-  if (!read()){
-     sequencia = prompt("Qual a sequência do jogo? Digite '0' se não houver" - 1);
+  let sequencia = -1;
+  if (!read()) {
+    sequencia = prompt(
+      "Qual a sequência do jogo? Digite '0' se não houver" - 1
+    );
   }
 
   if (
@@ -78,36 +80,32 @@ const update = () => {
 
   const jogo = modelo();
 
-  if (
-    jogo != undefined && 
-    validarIndice(indice)
-    ){
-     jogos(indice) = jogo;
-     console.log("Jogo atualizado com sucesso!")
-    } else {
-    console.log("indice inválido!")
-    }
+  if (jogo != undefined && validarIndice(indice)) {
+    jogos[indice] = jogo;
+    console.log("Jogo atualizado com sucesso!");
+  } else {
+    console.log("indice inválido!");
+  }
 };
 
 const del = () => {
-    if (!read()) {
-        return;
-      }
-    
-      const indice = prompt("Qual o indice que deseja remover? " - 1);
-    if (validarIndice(indice)){
-        jogos.splice(indice, 1)
-       console.log("Jogo removido com sucesso!")
-    } else {
-        console.log("Indice inválido")
-    }
-}
+  if (!read()) {
+    return;
+  }
 
+  const indice = prompt("Qual o indice que deseja remover? " - 1);
+  if (validarIndice(indice)) {
+    jogos.splice(indice, 1);
+    console.log("Jogo removido com sucesso!");
+  } else {
+    console.log("Indice inválido");
+  }
+};
 const functions = {
-    modelo,
-    create,
-    read,
-    update,
-    del,
-}
-module.exports = functions
+  modelo,
+  create,
+  read,
+  update,
+  del,
+};
+module.exports = functions;
