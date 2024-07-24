@@ -1,17 +1,37 @@
 const prompt = require("prompt-sync")();
 
-let jogos = [];
+const jogos = [];
 
-function create(){
-    let nome = prompt("Digite o nome do jogo: ")
+function create() {
+  const nome = prompt("Digite o nome do jogo: ");
+  const estudio = prompt("Digite o nome da empresa fundadora: ");
+  const anoLancamento = prompt("Digite o ano de lançamento: ");
+  const preco = prompt("Digite o preço do jogo: ");
+  const duracao = prompt("Digite a duração do jogo: ");
+  const sequencia = prompt("Qual a sequência do jogo?");
 
-    let empresa = prompt("Digite o nome da empresa fundadora: ")
-
-    let anoLanc = prompt("Digite o ano de lançamento: ")
-    
-    if (isNaN(anoLanc) || anoLanc > 2024 || anoLanc < 1962 || anoLanc != parseInt){
-        return console.log("Você deve digitar um ano válido!")
-    }
-    
-    let 
+  if (
+    nome != "" &&
+    isNaN(preco) &&
+    preco == 0 &&
+    isNaN(anoLancamento) &&
+    anoLancamento < 2024 &&
+    anoLancamento > 1962 &&
+    isNaN(duracao) &&
+    duracao > 0 &&
+    estudio != "" &&
+    ((sequencia > 0 && sequencia < jogos.length) || jogos.length == 0)
+  ) {
+    jogos.push({
+      nome,
+      estudio,
+      anoLancamento,
+      preco,
+      duracao,
+      sequencia,
+    });
+    console.log("Jogo criado com sucesso! ");
+  } else {
+    console.log("Dados inválidos");
+  }
 }
