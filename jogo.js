@@ -2,13 +2,16 @@ const prompt = require("prompt-sync")();
 
 const jogos = [];
 
-function create() {
+const modelo = () => {
   const nome = prompt("Digite o nome do jogo: ");
   const estudio = prompt("Digite o nome da empresa fundadora: ");
   const anoLancamento = prompt("Digite o ano de lançamento: ");
   const preco = prompt("Digite o preço do jogo: ");
   const duracao = prompt("Digite a duração do jogo: ");
-  const sequencia = prompt("Qual a sequência do jogo?");
+  let sequencia = -1
+  if (!read()){
+     sequencia = prompt("Qual a sequência do jogo? Digite '0' se não houver" - 1);
+  }
 
   if (
     nome != "" &&
@@ -20,29 +23,38 @@ function create() {
     isNaN(duracao) &&
     duracao > 0 &&
     estudio != "" &&
-    ((sequencia > 0 && sequencia < jogos.length) || jogos.length == 0)
+    ((sequencia >= -1 && sequencia < jogos.length) || jogos.length == 0)
   ) {
-    jogos.push({
+    return {
       nome,
       estudio,
       anoLancamento,
       preco,
       duracao,
       sequencia,
-    });
-    console.log("Jogo criado com sucesso! ");
+    };
   } else {
     console.log("Dados inválidos");
   }
-}
+};
+
+const create = () => {
+  const jogo = modelo();
+
+  if (jogo != undefined) {
+    jogos.push(jogo);
+    console.log("Jogo criado com sucesso! ");
+  }
+};
 
 const read = () => {
   if (jogos.length == 0) {
     console.log("Nenhum jogo cadastrado");
+    return false;
   } else {
-    jogos.forEach((jogo, index) => {
+    jogos.forEach((jogo, indice) => {
       console.log(`
-        ${index + 1}.
+        ${indice + 1}.
          Nome: ${jogo.nome}
          Estudio: ${jogo.estudio}
          Ano de Lançamento: ${jogo.anoLancamento}
@@ -51,5 +63,27 @@ const read = () => {
          Sequência: ${jogo.sequencia}
         `);
     });
+    return true;
   }
+};
+
+const update = () => {
+  if (!read()) {
+    return;
+  }
+
+  const indice = prompt("Qual o indice que deseja atualizar? ");
+
+  const jogo = modelo();
+
+  if (
+    jogo != undefined && 
+    indice > 0 
+    && indice < jogos.length
+    ){
+     jogos(indice) = jogo;
+     console.log("Jogo atualizado com sucesso!")
+    } else {
+    console.log("indice inválido!")
+    }
 };
