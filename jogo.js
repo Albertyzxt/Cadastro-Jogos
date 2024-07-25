@@ -7,26 +7,26 @@ const validarIndice = (indice) => indice >= 0 && indice < jogos.length;
 const modelo = () => {
   const nome = prompt("Digite o nome do jogo: ");
   const estudio = prompt("Digite o nome da empresa fundadora: ");
-  const anoLancamento = prompt("Digite o ano de lançamento: ");
-  const preco = prompt("Digite o preço do jogo: ");
-  const duracao = prompt("Digite a duração do jogo: ");
+  const anoLancamento = parseInt(prompt("Digite o ano de lançamento: "));
+  const preco = parseFloat(prompt("Digite o preço do jogo: "));
+  const duracao = parseFloat(prompt("Digite a duração do jogo: "));
   let sequencia = -1;
   if (!read()) {
-    sequencia = prompt(
+    sequencia = parseInt(prompt(
       "Qual a sequência do jogo? Digite '0' se não houver" - 1
-    );
+    ));
   }
 
   if (
-    nome != "" &&
-    isNaN(preco) &&
-    preco == 0 &&
-    isNaN(anoLancamento) &&
-    anoLancamento < 2024 &&
-    anoLancamento > 1962 &&
-    isNaN(duracao) &&
+    nome !== "" &&
+    !isNaN(preco) &&
+    preco >= 0 &&
+    !isNaN(anoLancamento) &&
+    anoLancamento <= 2024 &&
+    anoLancamento >= 1962 &&
+    !isNaN(duracao) &&
     duracao > 0 &&
-    estudio != "" &&
+    estudio !== "" &&
     ((sequencia >= -1 && sequencia < jogos.length) || jogos.length == 0)
   ) {
     return {
@@ -52,7 +52,7 @@ const create = () => {
 };
 
 const read = () => {
-  if (jogos.length == 0) {
+  if (jogos.length === 0) {
     console.log("Nenhum jogo cadastrado");
     return false;
   } else {
@@ -76,11 +76,11 @@ const update = () => {
     return;
   }
 
-  const indice = prompt("Qual o indice que deseja atualizar? " - 1);
+  const indice = parseInt(prompt("Qual o indice que deseja atualizar? " - 1));
 
   const jogo = modelo();
 
-  if (jogo != undefined && validarIndice(indice)) {
+  if (jogo !== undefined && validarIndice(indice)) {
     jogos[indice] = jogo;
     console.log("Jogo atualizado com sucesso!");
   } else {
@@ -93,7 +93,7 @@ const del = () => {
     return;
   }
 
-  const indice = prompt("Qual o indice que deseja remover? " - 1);
+  const indice = parseInt(prompt("Qual o indice que deseja remover? " - 1));
   if (validarIndice(indice)) {
     jogos.splice(indice, 1);
     console.log("Jogo removido com sucesso!");
