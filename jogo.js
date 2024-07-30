@@ -27,7 +27,7 @@ const modelo = () => {
     isNaN(duracao) &&
     duracao > 0 &&
     estudio != "" &&
-    ((sequencia >= -1 && sequencia < jogos.length) || jogos.length == 0)
+    ((sequencia >= -1 && sequencia <= jogos.length) || jogos.length == 0)
   ) {
     return {
       nome,
@@ -52,7 +52,7 @@ const create = () => {
 };
 
 const read = () => {
-  if (jogos.length == 0) {
+  if (jogos.length === 0) {
     console.log("Nenhum jogo cadastrado");
     return false;
   } else {

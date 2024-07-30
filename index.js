@@ -2,7 +2,6 @@ const prompt = require("prompt-sync")();
 
 const { create, read, update, del } = require("./jogo.js");
 
-const menuJogo = () => {
   while (true) {
     console.log(`
       === Menu dos Jogos ===
@@ -29,13 +28,10 @@ const menuJogo = () => {
         del();
         break;
       case "0":
-        console.log("Saindo da biblioteca, até mais!");
+        console.log("Saindo do Menu, até mais!");
         return;
       default:
         console.log("Você deve selecionar um número do menu.");
         return;
     }
   }
-};
-
-menuJogo();
