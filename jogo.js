@@ -26,13 +26,8 @@ const modelo = () => {
     anoLancamento >= 1962 &&
     !isNaN(duracao) &&
     duracao > 0 &&
-<<<<<<< HEAD
     estudio != "" &&
     ((sequencia >= -1 && sequencia <= jogos.length) || jogos.length == 0)
-=======
-    estudio !== "" &&
-    ((sequencia >= -1 && sequencia < jogos.length) || jogos.length == 0)
->>>>>>> 34e6a76c02534446fa068a8524cf6233106a37ad
   ) {
     return {
       nome,
